@@ -1,5 +1,6 @@
+import "@babel/polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
-import Page from "./page";
+import App from "./App";
 
-ReactDOM.render(<Page />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
