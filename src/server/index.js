@@ -1,13 +1,13 @@
 import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
-import cookieParser from 'cookie-parser';
+import cookieParser from "cookie-parser";
 
 export function main(root) {
   const app = express();
 
   app.use(bodyParser.json());
-  app.use(cookieParser())
+  app.use(cookieParser());
 
   app.use(
     "/static",
@@ -15,9 +15,9 @@ export function main(root) {
   );
 
   app.get("/users/current/", function(req, res) {
-    const {auth} = req.cookies;
-    if(auth) {
-      res.json({username: auth});
+    const { auth } = req.cookies;
+    if (auth) {
+      res.json({ username: auth });
     } else {
       res.sendStatus(401);
     }
@@ -26,12 +26,18 @@ export function main(root) {
   app.post("/users/logon/", function(req, res) {
     const { password, username } = req.body;
 
-    if(password === 'secret') {
-      res.cookie("auth", username, {httpOnly: true});
-      res.json({username});
+    if (password === "secret") {
+      res.cookie("auth", username, { httpOnly: true });
+      res.json({ username });
     } else {
       res.sendStatus(400);
     }
+  });
+
+  app.get("/users/logout/", function(req, res) {
+    res.cookie("auth", "", { httpOnly: true });
+
+    res.json(null);
   });
 
   app.get("/*", function(req, res) {

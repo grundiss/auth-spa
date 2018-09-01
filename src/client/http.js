@@ -25,3 +25,7 @@ export async function authenticate(credentials) {
     throw thrown;
   }
 }
+
+export async function logout() {
+  await axios.get("/users/logout/");
+}

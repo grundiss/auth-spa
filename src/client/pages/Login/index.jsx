@@ -27,7 +27,6 @@ const Login = withRouter(
     class Login extends React.Component {
       componentDidUpdate(prevProps) {
         if (!!this.props.values.success && !prevProps.values.success) {
-          console.log(this.props);
           this.props.user.authenticate(this.props.values.success);
 
           this.props.history.push('/dashboard');
@@ -92,7 +91,6 @@ export default function LoginWrapper() {
   return (
     <AuthenticationContext.Consumer>
       {function(user) {
-        console.log(user);
         return <Login user={user} />;
       }}
     </AuthenticationContext.Consumer>

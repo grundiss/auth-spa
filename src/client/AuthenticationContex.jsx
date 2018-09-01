@@ -21,8 +21,6 @@ export function Protected(Wrappee) {
         constructor(props) {
           super(props);
 
-          console.log(this.props.user);
-
           if(this.props.user === null) {
             this.props.history.push('/');
           }
