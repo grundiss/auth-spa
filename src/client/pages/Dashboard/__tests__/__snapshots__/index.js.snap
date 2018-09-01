@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages / Dashboard renders 1`] = `
+<div
+  data-mockof="client/AuthenticationContex"
+>
+  <div>
+    <h1>
+      Hello, Mr. Mocker McMockface
+    </h1>
+    <div>
+      <div
+        data-mockof="@material-ui/core/Button"
+      >
+        Logout
+      </div>
+    </div>
+  </div>
+</div>
+`;

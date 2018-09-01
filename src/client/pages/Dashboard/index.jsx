@@ -4,36 +4,36 @@ import { withRouter } from "react-router-dom";
 import { AuthenticationContext } from "client/AuthenticationContex";
 import { logout } from "client/http";
 
-export default withRouter(
-  class Dashboard extends React.Component {
-    onLogout = (context) => async () => {
-      await logout();
+export class Dashboard extends React.Component {
+  onLogout = context => async () => {
+    await logout();
 
-      context.user = null;
-      this.props.history.push("/login");
-    };
+    context.user = null;
+    this.props.history.push("/login");
+  };
 
-    render() {
-      return (
-        <AuthenticationContext.Consumer>
-          {(context) => {
-            if (!context.user) {
-              return null;
-            }
+  render() {
+    return (
+      <AuthenticationContext.Consumer>
+        {context => {
+          if (!context.user) {
+            return null;
+          }
 
-            return (
+          return (
+            <div>
+              <h1>Hello, {context.user.username}</h1>
               <div>
-                <h1>Hello, {context.user.username}</h1>
-                <div>
-                  <Button variant="outlined" onClick={this.onLogout(context)}>
-                    Logout
-                  </Button>
-                </div>
+                <Button variant="outlined" onClick={this.onLogout(context)}>
+                  Logout
+                </Button>
               </div>
-            );
-          }}
-        </AuthenticationContext.Consumer>
-      );
-    }
+            </div>
+          );
+        }}
+      </AuthenticationContext.Consumer>
+    );
   }
-);
+}
+
+export default withRouter(Dashboard);
